@@ -34,7 +34,7 @@ function matrixGenerator(size , grass , grasseater , predator) {
 
 frameRate(5)
 }
-matrixGenerator(40,100,50,5)
+matrixGenerator(40,100,1,5)
 
 
 
@@ -86,25 +86,26 @@ function draw() {
           rect(y * side, x * side, side, side)}
     }
   }
-  console.log(matrix)
+  
 
   for (i in grassArr) {
     grassArr[i].mul()
   }
   
   for (i in grassEaterArr) {
-    
+     grassEaterArr[i].mul()
     grassEaterArr[i].eat()
-    grassEaterArr[i].mul()
-    
+   
+     
   }
   
     for (i in predatorArr) {
       predatorArr[i].eat()
     }
-    let flood = new Flood
+  
+var flood = new Flood
     flood.flood()
-    let river = new DirtyRiver
+      var river = new DirtyRiver
     river.flow(matrix.length)
     
 }
