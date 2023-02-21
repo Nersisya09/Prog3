@@ -1,6 +1,6 @@
 var x1 =  1
 
-class DirtyRiver {
+module.exports = class DirtyRiver {
 constructor(){
 
 }

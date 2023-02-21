@@ -1,4 +1,5 @@
-class Grass extends LivingCreature{
+let LivingCreature = require("./livingCreature")
+module.exports=  class Grass extends LivingCreature{
     
     
     mul() {

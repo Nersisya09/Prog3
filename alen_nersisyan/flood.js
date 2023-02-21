@@ -1,6 +1,6 @@
 var up = 0
 
-class Flood {
+module.exports =  class Flood {
   constructor() {
     this.x = 0
     this.y = 0
@@ -9,19 +9,22 @@ class Flood {
 
   }
   flood() {
+if(this.mul >= 4){
 
     for (var i5 = up; i5 >= 0; i5--) {
+     
       for (var i = 0; i < this.size; i++) {
-        matrix[i5][i] = 4
+       matrix[i5][i] = 4
         for (let i1 in grassArr) {
           if (i5 == grassArr[i1].y && i == grassArr[i1].x) {
             grassArr.splice(i1, 1);
-            break;
+            
+          break; 
           }
         }
         for (let i2 in grassEaterArr) {
           if (i5 == grassEaterArr[i2].y && i == grassEaterArr[i2].x) {
-
+            
             grassEaterArr.splice(i2, 1);
             break;
           }
@@ -29,16 +32,19 @@ class Flood {
         }
         for (let i3 in predatorArr) {
           if (i5 == predatorArr[i3].y && i == predatorArr[i3].x) {
-
+            
             predatorArr.splice(i3, 1);
             break;
           }
         }
       }
-
+      up++
+this.mul = 0
+    }} else{
+      this.mul++
     }
 
-    up++
+    
 
   }
 }
