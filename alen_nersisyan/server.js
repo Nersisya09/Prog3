@@ -7,6 +7,7 @@ var GrassEater = require("./grassEater")
 var Predator = require("./predator")
 var Flood = require("./flood")
 var DirtyRiver = require("./dirtyRiver")
+var Storm = require("./storm.js")
 
 app.use(express.static("."));
 
@@ -14,12 +15,29 @@ app.get('/', function (req, res) {
    res.redirect('index.html');
 });
 
-let grassArr = [];
-let grassEaterArr = [];
-let predatorArr = []
-let floodArr = []
+ grassArr = [];
+ grassEaterArr = [];
+ predatorArr = []
+
 
 server.listen(3000);
+
+function random(min,max){
+    if(Array.isArray(min)){
+       var z = random(0,min.length)
+        return min[z]
+    }else if (max === undefined){
+      max = min
+        min = 0
+        
+          var z = Math.floor(Math.random()*(max-min+1)) + min;
+    return z;
+    } else {
+        var z = Math.floor(Math.random()*(max-min+1)) + min;
+        return z;
+    }
+  
+}
 matrix = []
 function matrixGenerator(size , grass , grasseater , predator) {
     for(let i = 0 ; i<size ; i++){
@@ -30,22 +48,22 @@ function matrixGenerator(size , grass , grasseater , predator) {
   
       }
       for(let k = 0 ; k < grass ; k++){
-        let x = Math.floor(random(size))
-        let y= Math.floor(random(size))
+        let x = Math.floor(random(size-1))
+        let y= Math.floor(random(size-1))
         matrix[x][y] = 1
       }
       for(let k1 = 0 ; k1 < grasseater; k1++){
-        let x = Math.floor(random(size))
-        let y= Math.floor(random(size))
+        let x = Math.floor(random(size-1))
+        let y= Math.floor(random(size-1))
         matrix[x][y] = 2
     }
     for(let k2 = 0 ; k2 < predator; k2++){
-      let x = Math.floor(random(size))
-      let y= Math.floor(random(size))
+      let x = Math.floor(random(size-1))
+      let y= Math.floor(random(size-1))
       matrix[x][y] = 3
   }
   
-
+  io.emit("send matrix" , matrix)
   }
 
   matrixGenerator(40,100,1,5)
@@ -71,7 +89,7 @@ function createObj(){
           
         }
       }
-    
+      io.emit("send matrix" , matrix)
 }
 
 createObj()
@@ -83,37 +101,21 @@ function gameMove(){
       
       for (i in grassEaterArr) {
          grassEaterArr[i].mul()
-        grassEaterArr[i].eat()
+        grassEaterArr[i].eat(grassArr)
        
          
       }
       
         for (i in predatorArr) {
-          predatorArr[i].eat()
+          predatorArr[i].eat(grassArr,grassEaterArr)
         }
-        flood.flood()
-        console.log(flood.mul)
+        flood.flood(grassArr,grassEaterArr,predatorArr)
+        // console.log(flood.mul)
       
         var river = new DirtyRiver
-        river.flow(matrix.length) 
+        river.flow(matrix.length,grassArr,grassEaterArr,predatorArr) 
          io.emit("send matrix" , matrix)
 } 
+console.log(grassArr);
 
 setInterval(gameMove,500)
-
-function random(min,max)
-{
-    if(Array.isArray(min)){
-       var z = random(0,min.length)
-        return z
-    }else if (max === undefined){
-        min = 0
-        max = min
-          var z = Math.floor(Math.random()*(max-min+1)) + min;
-    return z;
-    } else {
-        var z = Math.floor(Math.random()*(max-min+1)) + min;
-        return z;
-    }
-  
-}

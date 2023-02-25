@@ -30,6 +30,21 @@
             }
             return found;
         }
-        
+        random(min,max){
+            if(Array.isArray(min)){
+                var z = this.random(0,min.length)
+                return min[z]
+            }
+            else if (max === undefined){
+                min = 0
+                max = min
+                var z = Math.floor(Math.random()*(max-min+1)) + min;
+                return z;
+            } else {
+                var z = Math.floor(Math.random()*(max-min+1)) + min;
+                return z;
+            }
+  
+}
     }
     

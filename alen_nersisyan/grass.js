@@ -5,7 +5,9 @@ module.exports=  class Grass extends LivingCreature{
     mul() {
     
     this.multiply++; //1
-    var newCell = random(this.chooseCell(0)); //newCell-1 datark harevan
+    var newCell = this.random(this.chooseCell(0));
+    console.log(newCell);
+     //newCell-1 datark harevan
     if (this.multiply >= 3 && newCell) { //[3,4]
     var newGrass = new Grass(newCell[0], newCell[1]);
     grassArr.push(newGrass);

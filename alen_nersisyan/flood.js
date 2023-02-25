@@ -8,32 +8,32 @@ module.exports =  class Flood {
     this.mul = 0
 
   }
-  flood() {
-if(this.mul >= 4){
+  flood(g,ge,p) {
+if(this.mul = 4){
 
     for (var i5 = up; i5 >= 0; i5--) {
      
       for (var i = 0; i < this.size; i++) {
        matrix[i5][i] = 4
-        for (let i1 in grassArr) {
-          if (i5 == grassArr[i1].y && i == grassArr[i1].x) {
-            grassArr.splice(i1, 1);
+        for (let i1 in g) {
+          if (i5 == g[i1].y && i == g[i1].x) {
+            g.splice(i1, 1);
             
           break; 
           }
         }
-        for (let i2 in grassEaterArr) {
-          if (i5 == grassEaterArr[i2].y && i == grassEaterArr[i2].x) {
+        for (let i2 in ge) {
+          if (i5 == ge[i2].y && i == ge[i2].x) {
             
-            grassEaterArr.splice(i2, 1);
+            ge.splice(i2, 1);
             break;
           }
 
         }
-        for (let i3 in predatorArr) {
-          if (i5 == predatorArr[i3].y && i == predatorArr[i3].x) {
+        for (let i3 in p) {
+          if (i5 == p[i3].y && i == p[i3].x) {
             
-            predatorArr.splice(i3, 1);
+            p.splice(i3, 1);
             break;
           }
         }
