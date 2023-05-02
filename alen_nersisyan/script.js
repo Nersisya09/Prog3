@@ -3,11 +3,8 @@ var side = 10
 // var allcharacters = grassArr.concat(grassEaterArr)
 
 function setup() {
-
-  createCanvas(100 * side, 100 * side);
+  createCanvas(400, 400 );
   background("#acacac");
-
-
   frameRate(5)
 }
 
@@ -42,17 +39,12 @@ function update(matrix) {
       } else if (matrix[x][y] == 5) {
         fill("black");
         rect(y * side, x * side, side, side)
+      }else if (matrix[x][y] == 6) {
+        fill("#1B0F54");
+        rect(y * side, x * side, side, side)
       }
     }
   }
-
-
-
-
-
-
-
-
 
 }
 

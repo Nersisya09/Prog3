@@ -27,7 +27,9 @@ module.exports =  class GrassEater extends LivingCreature {
 
       this.energy--;
       let emptyCells = this.chooseCell(0) //[[1,2],[2,5]]
-      let oneEmptyCell = this.random(emptyCells) //[1,2]
+      let cellI = this.random(0,emptyCells.length) 
+
+      let oneEmptyCell = emptyCells[cellI]
       if (oneEmptyCell) {
         matrix[this.y][this.x] = 0
         let neighX = oneEmptyCell[0]
@@ -44,7 +46,8 @@ module.exports =  class GrassEater extends LivingCreature {
 
   eat(g) {
     let grasses = this.chooseCell(1)
-    let oneGrass = this.random(grasses)
+    let oneGrassI = this.random(0,grasses.length)
+    var oneGrass = grasses[oneGrassI]
     if (oneGrass) {
       this.energy++;
       let oneGrassX = oneGrass[0];
@@ -70,7 +73,9 @@ module.exports =  class GrassEater extends LivingCreature {
 
   mul() {
     if (this.energy >= 12) {
-      var newCell = random(this.chooseCell(0))
+      let newCells = this.chooseCell(0)
+      var newCellI = this.random(0,newCells)
+      var newCell = newCells[newCellI]
       if (newCell) {
         var newGrassEater = new GrassEater(newCell[0], newCell[1])
         grassEaterArr.push(newGrassEater)

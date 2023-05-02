@@ -61,7 +61,7 @@ module.exports =  class Predator {
         let grasses = this.chooseCell(1)
         let grassEaters = this.chooseCell(2)
         let all = grasses.concat(grassEaters)
-        let onen = this.random(0,all.length)
+        let onen = this.random(all.length)
         let one = all[onen]
         if (one) {
             let oneX = one[0];

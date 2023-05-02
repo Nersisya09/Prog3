@@ -8,8 +8,8 @@ module.exports =  class Flood {
     this.mul = 0
 
   }
-  flood(g,ge,p) {
-if(this.mul = 4){
+  flood(g,ge,p,s,b) {
+if(this.mul = 4 && up < matrix.length){
 
     for (var i5 = up; i5 >= 0; i5--) {
      
@@ -24,7 +24,6 @@ if(this.mul = 4){
         }
         for (let i2 in ge) {
           if (i5 == ge[i2].y && i == ge[i2].x) {
-            
             ge.splice(i2, 1);
             break;
           }
@@ -37,10 +36,26 @@ if(this.mul = 4){
             break;
           }
         }
+      
+        for (let i4 in s) {
+          if (i5 == s[i4].y && i == s[i4].x) {
+            s.splice(i4, 1);
+            break;
+          }
+        }
+        for (let i5 in b) {
+          if (i5 == b[i5].x && i == b[i5].y) {
+            
+            b.splice(i5, 1);
+            break;
+          }
+        }
       }
-      up++
+
+
+      
 this.mul = 0
-    }} else{
+    }up++} else{
       this.mul++
     }
 

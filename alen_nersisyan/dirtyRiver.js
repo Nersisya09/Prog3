@@ -4,6 +4,7 @@ module.exports = class DirtyRiver {
 
 
 flow(x,g,ge,p){
+  if(x1 < matrix.length){
   x = x-x1
 matrix[x][x] = 5
 
@@ -25,6 +26,6 @@ matrix[x][x] = 5
                   break;}}
       }}
       x1++
-}}
+}}}
 
 
