@@ -131,7 +131,7 @@ function gameMove() {
   }
 
 for(i in stormArr){
-  stormArr[i].draw(i)
+  stormArr[i].move()
   
 }
 var river = new DirtyRiver

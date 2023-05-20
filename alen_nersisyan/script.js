@@ -37,9 +37,6 @@ function update(matrix) {
         fill("blue");
         rect(y * side, x * side, side, side)
       } else if (matrix[x][y] == 5) {
-        fill("black");
-        rect(y * side, x * side, side, side)
-      }else if (matrix[x][y] == 6) {
         fill("#1B0F54");
         rect(y * side, x * side, side, side)
       }
