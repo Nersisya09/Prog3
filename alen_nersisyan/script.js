@@ -7,15 +7,6 @@ function setup() {
   background("#acacac");
   frameRate(5)
 }
-
-
-
-
-
-
-
-
-
 function update(matrix) {
   // console.log(matrix);
   
@@ -38,6 +29,9 @@ function update(matrix) {
         rect(y * side, x * side, side, side)
       } else if (matrix[x][y] == 5) {
         fill("#1B0F54");
+        rect(y * side, x * side, side, side)
+      }else if (matrix[x][y] == 6) {
+        fill("pink");
         rect(y * side, x * side, side, side)
       }
     }

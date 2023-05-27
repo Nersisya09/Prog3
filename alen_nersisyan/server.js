@@ -55,21 +55,25 @@ function matrixGenerator(size, grass, grasseater, predator, storm , bomb) {
   for (let k = 0; k < grass; k++) {
     let x = Math.floor(random(size - 1))
     let y = Math.floor(random(size - 1))
-    matrix[x][y] = 1
+    matrix[y][x] = 1
   }
   for (let k1 = 0; k1 < grasseater; k1++) {
     let x = Math.floor(random(size - 1))
     let y = Math.floor(random(size - 1))
-    matrix[x][y] = 2
+    matrix[y][x] = 2
   }
   for (let k2 = 0; k2 < predator; k2++) {
     let x = Math.floor(random(size - 1))
     let y = Math.floor(random(size - 1))
-    matrix[x][y] = 3
+    matrix[y][x] = 3
   } for (let k3 = 0; k3 < storm; k3++) {
     let x = Math.floor(random(size - 1))
     let y = Math.floor(random(size - 1))
-    matrix[x][y] = 6}
+    if( matrix[y][x] == 0){
+  matrix[y][x] = 6
+    }
+  
+  }
   // } for (let k4 = 0; k4 < bomb; k4++) {
   //   let x = Math.floor(random(size - 1))
   //   let y = Math.floor(random(size - 1))
@@ -99,7 +103,7 @@ function createObj() {
         predatorArr.push(predator);
       }
       if (matrix[y][x] == 6) {
-        let storm = new Storm(y, x );
+        let storm = new Storm(x,y);
         stormArr.push(storm);
         
       } 
@@ -122,7 +126,8 @@ function gameMove() {
   }
 
   for (i in grassEaterArr) {
-    grassEaterArr[i].mul()
+    grassEaterArr[i].mul() 
+
     grassEaterArr[i].eat(grassArr)
   }
 
@@ -131,7 +136,7 @@ function gameMove() {
   }
 
 for(i in stormArr){
-  stormArr[i].move()
+  stormArr[i].draw()
   
 }
 var river = new DirtyRiver
