@@ -67,23 +67,23 @@ function matrixGenerator(size, grass, grasseater, predator, storm , bomb) {
     let y = Math.floor(random(size - 1))
     matrix[y][x] = 3
   } for (let k3 = 0; k3 < storm; k3++) {
-    let x = Math.floor(random(size - 1))
-    let y = Math.floor(random(size - 1))
+    let x = Math.floor(random(size - 6))
+    let y = Math.floor(random(size - 6))
     if( matrix[y][x] == 0){
   matrix[y][x] = 6
     }
-  
+  } for (let k4 = 0; k4 < bomb; k4++) {
+    let x = Math.floor(random(size - 1))
+    let y = Math.floor(random(size - 1))
+    if( matrix[y][x] == 0){
+      matrix[y][x] = 7
+        }
   }
-  // } for (let k4 = 0; k4 < bomb; k4++) {
-  //   let x = Math.floor(random(size - 1))
-  //   let y = Math.floor(random(size - 1))
-  //   matrix[y][x] = 7
-  // }
 
   io.emit("send matrix", matrix)
 }
 
-matrixGenerator(40, 100, 1, 5, 5 , 5)
+matrixGenerator(40, 100, 10, 5, 5 , 5, 5)
 
 
 
@@ -138,6 +138,9 @@ function gameMove() {
 for(i in stormArr){
   stormArr[i].draw()
   
+}
+for(i in bombArr){
+  bombArr[i].check()
 }
 var river = new DirtyRiver
   river.flow(matrix.length, grassArr, grassEaterArr, predatorArr)

@@ -31,7 +31,13 @@ function update(matrix) {
         fill("#1B0F54");
         rect(y * side, x * side, side, side)
       }else if (matrix[x][y] == 6) {
-        fill("pink");
+        fill("#2E2D31");
+        rect(y * side, x * side, side, side)
+      } else if (matrix[x][y] == 7) {
+        fill("black");
+        rect(y * side, x * side, side, side)
+      } else if (matrix[x][y] == 10) {
+        fill("#6D0000");
         rect(y * side, x * side, side, side)
       }
     }

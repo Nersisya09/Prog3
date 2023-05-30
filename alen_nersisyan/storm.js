@@ -5,10 +5,9 @@ module.exports = class Storm extends LivingCreature {
   draw() {
     this.getNewCoordinates()
    let all = this.directions 
-
+all.filter((val) => val != undefined)
     var stormC = []
-
-    for (let i = 4; i > 0; i--) {
+    for (let i = 5; i > 0; i--) {
       let oneI = this.random(0, all.length - 1)
       let one = all[oneI]
       all.splice(all.indexOf(one), 1)
@@ -17,11 +16,10 @@ module.exports = class Storm extends LivingCreature {
     
     stormC.push([this.x, this.y])
     stormC.forEach(function (val) {
-      console.log(val)
-      console.log(matrix[val[1]][val[0]])
       matrix[val[1]][val[0]] = 6
     })
-    console.log(stormC)
+    
+    
     this.eat(stormC)
     setTimeout(() => {
       this.move(stormC)
@@ -44,21 +42,16 @@ module.exports = class Storm extends LivingCreature {
           if (val3[0] == val[0] && val3[0] == val[0]) {
             predatorArr.splice(1, index2)
           }})  
-          console.log( matrix[val[1]][val[0]])
-    })
+            })
  
   }
 
   move(all) {
-   // stormArr.splice(stormArr.indexOf(this),1)
-    console.log(all)
     all.forEach((val) => matrix[val[1]][val[0]] = 0)
     let newCI = this.random(0,all.length-1)
     let newC = all[newCI]
-    console.log(newC)
     this.x = newC[0]
     this.y = newC[1]
-   // stormArr.push(this)
   }
 
   getNewCoordinates() {
