@@ -39,8 +39,8 @@ module.exports = class Bomb extends LivingCreature {
         var dir = this.directions
         dir.forEach(function (val) {
             if (val != 0 || val != 4 || val != 5) {
-                console.log(boom(all))
-                boom(all)
+                console.log(typeof(this.boom))
+                this.boom(all)
             }
         });
     }

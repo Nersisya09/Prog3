@@ -10,6 +10,7 @@ var DirtyRiver = require("./dirtyRiver")
 var Storm = require("./storm.js")
 var Bomb = require("./bomb.js")
 
+
 app.use(express.static("."));
 
 app.get('/', function (req, res) {
@@ -83,7 +84,7 @@ function matrixGenerator(size, grass, grasseater, predator, storm , bomb) {
   io.emit("send matrix", matrix)
 }
 
-matrixGenerator(40, 100, 10, 5, 5 , 5, 5)
+matrixGenerator(40, 100, 1, 10, 10 , 10)
 
 
 
@@ -115,6 +116,11 @@ function createObj() {
 
     }
   }
+  io.on("statistics", function(){
+    var statistics = []
+    statistics.push(grassArr.length,grassEaterArr.length,predatorArr.length,stormArr.length,bombArr.length)
+  console.log(statistics)
+  } )
   io.emit("send matrix", matrix)
 }
 
@@ -139,9 +145,14 @@ for(i in stormArr){
   stormArr[i].draw()
   
 }
-for(i in bombArr){
-  bombArr[i].check()
-}
+io.on("statistics", function(){
+  var statistics = []
+  statistics.push(grassArr.length,grassEaterArr.length,predatorArr.length,stormArr.length,bombArr.length)
+console.log(statistics)
+} )
+// for(i in bombArr){
+//   bombArr[i].check()
+// }
 var river = new DirtyRiver
   river.flow(matrix.length, grassArr, grassEaterArr, predatorArr)
   flood.flood(grassArr, grassEaterArr, predatorArr , stormArr , bombArr)

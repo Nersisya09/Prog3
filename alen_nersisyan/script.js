@@ -46,5 +46,17 @@ function update(matrix) {
 }
 
 socket.on("send matrix" , update)
-
+socket.emit("statistics",function(){
+  let t1 = document.getElementById("1")
+  let t2 = document.getElementById("2")
+  let t3 = document.getElementById("3")
+  let t4 = document.getElementById("4")
+  let t5 = document.getElementById("5")
+   console.log(statistics)
+  t1.innerText = statistics[0]
+  t2.innerText = statistics[1]
+  t3.innerText = statistics[2]
+  t4.innerText = statistics[3]
+  t5.innerText = statistics[4]
+})
 
