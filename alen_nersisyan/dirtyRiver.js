@@ -3,29 +3,39 @@ var x1 =  1
 module.exports = class DirtyRiver {
 
 
-flow(x,g,ge,p){
+flow(x){
   if(x1 < matrix.length){
   x = x-x1
 matrix[x][x] = 5
 
-  for (let i1 in g) {
-      if (x == g[i1].x  ) {
-          if(x== g[i1].y){
-          g.splice(i1, 1);
-          break;}
-      }}
-      for(let i2 in ge){
-      if (x == ge[i2].x) {
-        if(x== ge[i2].y){
-          ge.splice(i2, 1);
-          break;}}
-          for(let i3 in p){
-              if (x == p[i3].x) {
-                if(x== p[i3].y){
-                  p.splice(i3, 1);
-                  break;}}
-      }}
-      x1++
+
+  for (let i1 in grassArr) {
+    if (x == grassArr[i1].y && x == grassArr[i1].x) {
+      grassArr.splice(i1, 1);
+    }
+  }
+  for (let i2 in grassEaterArr) {
+    if (x == grassEaterArr[i2].y && x == grassEaterArr[i2].x) {
+      grassEaterArr.splice(i2, 1);
+    }
+
+  }
+  for (let i3 in predatorArr) {
+    if (x == predatorArr[i3].y && x == predatorArr[i3].x) {
+      predatorArr.splice(i3, 1);
+    }
+  }
+
+  for (let i4 in stormArr) {
+    if (x == stormArr[i4].y && x == stormArr[i4].x) {
+      stormArr.splice(i4, 1);
+    }
+  }
+  for (let i5 in bombArr) {
+    if (x == bombArr[i5].y && x == bombArr[i5].x) {
+      bombArr.splice(i5, 1);
+    }
+  }
 }}}
 
 

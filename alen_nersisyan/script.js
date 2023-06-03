@@ -1,6 +1,10 @@
 let socket = io()
 var side = 10
-// var allcharacters = grassArr.concat(grassEaterArr)
+let t1 = document.getElementById("1")
+  let t2 = document.getElementById("2")
+  let t3 = document.getElementById("3")
+  let t4 = document.getElementById("4")
+  let t5 = document.getElementById("5")
 
 function setup() {
   createCanvas(400, 400 );
@@ -8,7 +12,7 @@ function setup() {
   frameRate(5)
 }
 function update(matrix) {
-  // console.log(matrix);
+  
   
   for (let x = 0; x < matrix.length; x++) {
     for (let y = 0; y < matrix[x].length; y++) {
@@ -47,12 +51,7 @@ function update(matrix) {
 
 socket.on("send matrix" , update)
 socket.emit("statistics",function(){
-  let t1 = document.getElementById("1")
-  let t2 = document.getElementById("2")
-  let t3 = document.getElementById("3")
-  let t4 = document.getElementById("4")
-  let t5 = document.getElementById("5")
-   console.log(statistics)
+  //  console.log(statistics)
   t1.innerText = statistics[0]
   t2.innerText = statistics[1]
   t3.innerText = statistics[2]
