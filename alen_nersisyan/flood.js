@@ -8,12 +8,12 @@ module.exports = class Flood {
     this.y = 0
     this.size = matrix.length
     this.mul = 0
-
+this.up = up
   }
   flood() {
-    if (this.mul = 4 && up < matrix.length) {
+    if (this.mul = 4 && this.up < matrix.length) {
 
-      for (var i5 = up; i5 >= 0; i5--) {
+      for (var i5 = this.up; i5 >= 0; i5--) {
 
         for (var i = 0; i < this.size; i++) {
           matrix[i5][i] = 4
@@ -49,7 +49,7 @@ module.exports = class Flood {
 
 
         this.mul = 0
-      } up++
+      } this.up++
     } else {
       this.mul++
     }

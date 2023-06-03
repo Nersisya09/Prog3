@@ -5,6 +5,8 @@ let t1 = document.getElementById("1")
   let t3 = document.getElementById("3")
   let t4 = document.getElementById("4")
   let t5 = document.getElementById("5")
+  let t6 = document.getElementById("6")
+  let button = document.getElementById("button")
 
 function setup() {
   createCanvas(400, 400 );
@@ -48,14 +50,21 @@ function update(matrix) {
   }
 
 }
-
-socket.on("send matrix" , update)
-socket.emit("statistics",function(){
-  //  console.log(statistics)
+function state(statistics){
+  
   t1.innerText = statistics[0]
   t2.innerText = statistics[1]
   t3.innerText = statistics[2]
   t4.innerText = statistics[3]
   t5.innerText = statistics[4]
+
+}
+button.addEventListener("click", function() {
+  socket.emit("click")
 })
+socket.on("river",function(){
+t6.innerText = 0
+})
+socket.on("send matrix" , update)
+socket.on("state",state)
 

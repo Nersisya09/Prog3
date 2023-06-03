@@ -37,7 +37,7 @@ module.exports = class Bomb extends LivingCreature {
     check() {
         var all = this.allDirections
         var dir = this.directions
-        var allXY = all.push([this.x, this.y])
+
         for (let i in all) {
             if (all[i][0] < 0 || all[i][1] < 0 || all[i][0] > matrix.length || all[i][1] > matrix.length) {
                 all.splice(i, 1)
@@ -48,7 +48,7 @@ module.exports = class Bomb extends LivingCreature {
                 dir.splice(i1, 1)
             }
         }
-        
+
         let Master = all
         Master.push([this.x, this.y])
         let arr = [1, 2, 3, 6]
@@ -68,63 +68,53 @@ module.exports = class Bomb extends LivingCreature {
         }
     }
 
-    
-action(all){
 
-multiBoom()
-setTimeout(function () {
+    action(all) {
 
-    setTimeout(restore,1)
-}, 4000)
+        multiBoom()
+        setTimeout(function () {
 
-//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//
+            setTimeout(restore, 1)
+        }, 4000)
 
-function boom() {
-        
-    let grasses = chooseCell(1)
-    let grassEaters = chooseCell(2)
-    let predators = chooseCell(3)
-    let storms = chooseCell(6)
-    all.forEach(function (val) {
-        matrix[val[1]][val[0]] = 10
-    })
-    grasses.forEach((val, i) => grassArr.splice(i, 1))
-    grassEaters.forEach((val, i) => grassEaterArr.splice(i, 1))
-    predators.forEach((val, i) => predatorArr.splice(i, 1))
-    storms.forEach((val, i) => stormArr.splice(i, 1))
-    
-}
+        //*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//
 
-//////////
+        function boom() {
 
-function chooseCell(ch) {
-    var found = [];
-    for (var i in all) {
-        var x = all[i][0];
-        var y = all[i][1];
-        if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-            if (matrix[y][x] == ch) {
-                found.push(all[i]);
+            // let grasses = chooseCell(1)
+            // let grassEaters = chooseCell(2)
+            // let predators = chooseCell(3)
+            // let storms = chooseCell(6)
+            all.forEach(function (val) {
+                if (grassArr.includes(val)) {
+                    grassArr.splice(grassArr.indexOf(val), 1)
+                } else if (grassEaterArr.includes(val)) {
+                    grassEaterArr.splice(grassEaterArr.indexOf(val), 1)
+                } else if (predatorArr.includes(val)) {
+                    predatorArr.splice(predatorArr.indexOf(val), 1)
+                } else if (stormArr.includes(val)) {
+                    stormArr.splice(stormArr.indexOf(val), 1)
+                }
+                matrix[val[1]][val[0]] = 10
+            })
+
+
+        }
+
+        //////////
+
+        function restore() {
+            all.forEach(function (val) {
+                matrix[val[1]][val[0]] = 0
+            })
+        }
+
+        //////////
+
+        function multiBoom() {
+            for (i = 0; i < 5; i++) {
+                setTimeout(boom, 799)
             }
         }
     }
-    return found;
 }
-
-//////////
-
-function restore(){
-    all.forEach(function (val) {
-        matrix[val[1]][val[0]] = 0
-    })
-}
-
-
-//////////
-
-function multiBoom(){
-for(i = 0 ; i<5; i++){
-    setTimeout(boom,599)
-}
-}
-}}

@@ -36,6 +36,7 @@ matrix[x][x] = 5
       bombArr.splice(i5, 1);
     }
   }
+  x1+=1
 }}}
 
 

@@ -108,7 +108,7 @@ function createObj() {
         stormArr.push(storm);
         
       } 
-      if (matrix[x][y] == 7) {
+      if (matrix[y][x] == 7) {
         let bomb = new Bomb(x, y);
         bombArr.push(bomb);
       }
@@ -116,11 +116,7 @@ function createObj() {
 
     }
   }
-  io.on("statistics", function(){
-    var statistics = []
-    statistics.push(grassArr.length,grassEaterArr.length,predatorArr.length,stormArr.length,bombArr.length)
-  // console.log(statistics)
-  } )
+ 
   io.emit("send matrix", matrix)
 }
 
@@ -145,24 +141,30 @@ for(i in stormArr){
   stormArr[i].draw()
   
 }
-io.on("statistics", function(){
-  var statistics = []
-  statistics.push(grassArr.length,grassEaterArr.length,predatorArr.length,stormArr.length,bombArr.length)
-// console.log(statistics)
-} )
+
+var statistics = []
+statistics.push(grassArr.length,grassEaterArr.length,predatorArr.length,stormArr.length,bombArr.length)
+
 for(i in bombArr){
   bombArr[i].check()
 }
 var river = new DirtyRiver
-  river.flow(matrix.length, grassArr, grassEaterArr, predatorArr)
+if(flood.up <= matrix.length-1){
+  river.flow(matrix.length)
+} else {
+  io.emit("river")
+}
   flood.flood()
- 
 
-  
-
+  io.emit("state",statistics)
 
   io.emit("send matrix", matrix)
 }
 
+io.on("connection", function(socket){
+  socket.on("click",function(){
+    flood.up = matrix.length-2
+  })
+} )
 
 setInterval(gameMove, 500)
