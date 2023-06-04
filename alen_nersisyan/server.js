@@ -84,7 +84,7 @@ function matrixGenerator(size, grass, grasseater, predator, storm , bomb) {
   io.emit("send matrix", matrix)
 }
 
-matrixGenerator(40, 100, 1, 10, 1 , 5)
+matrixGenerator(40, 100, 1, 10, 5 , 5)
 
 
 
@@ -164,6 +164,18 @@ if(flood.up <= matrix.length-1){
 io.on("connection", function(socket){
   socket.on("click",function(){
     flood.up = matrix.length-2
+  })
+  socket.on("summer",function(){
+    console.log("summer")
+    flood.mul = 0
+    grassArr.forEach(function(val){
+      val.multiply = 0})
+  })
+  socket.on("winter",function(){
+    console.log("winter")
+    flood.mul = -9999999999999999999999999999
+     grassArr.forEach(function(val){
+      val.multiply = -99999999999999999999999})
   })
 } )
 

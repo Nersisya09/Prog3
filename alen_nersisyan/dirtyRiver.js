@@ -4,10 +4,11 @@ module.exports = class DirtyRiver {
 
 
 flow(x){
-  if(x1 < matrix.length){
+  if(x1 <= matrix.length){
   x = x-x1
-matrix[x][x] = 5
-
+  for(let i = x; i < matrix.length; i++){
+    matrix[i][i] = 5
+  }
 
   for (let i1 in grassArr) {
     if (x == grassArr[i1].y && x == grassArr[i1].x) {

@@ -11,7 +11,7 @@ module.exports = class Flood {
 this.up = up
   }
   flood() {
-    if (this.mul = 4 && this.up < matrix.length) {
+    if (this.mul >= 0 && this.up < matrix.length) {
 
       for (var i5 = this.up; i5 >= 0; i5--) {
 

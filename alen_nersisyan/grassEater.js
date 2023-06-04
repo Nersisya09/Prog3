@@ -133,7 +133,7 @@ module.exports = class GrassEater extends LivingCreature {
     var emptyCells = this.chooseCell(0);
     var newCell = this.random(emptyCells);
 
-    if (newCell) {
+    if (newCell && matrix[newCell[1]][newCell[0]] != 10) {
       var newX = newCell[0];
       var newY = newCell[1];
       matrix[newY][newX] = 2;
@@ -148,7 +148,7 @@ module.exports = class GrassEater extends LivingCreature {
     this.energy--
     var emptyCells = this.chooseCell(0);
     var newCell = this.random(emptyCells);
-    if (newCell && this.energy >= 0) {
+    if (newCell && this.energy >= 0 && matrix[newCell[1]][newCell[0]] != 10) {
       var newX = newCell[0];
       var newY = newCell[1];
       matrix[newY][newX] = matrix[this.y][this.x]

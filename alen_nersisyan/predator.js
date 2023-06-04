@@ -46,7 +46,7 @@ module.exports =  class Predator {
 
         let emptyCells = this.chooseCell(0);
         let oneEmptyCell = this.random(emptyCells);
-        if (oneEmptyCell) {
+        if (oneEmptyCell && matrix[oneEmptyCell[1]][oneEmptyCell[0]] != 10) {
 
             matrix[this.y][this.x] = 0;
             let neighX = oneEmptyCell[0];
@@ -63,7 +63,7 @@ module.exports =  class Predator {
         let all = grasses.concat(grassEaters)
         let onen = this.random(all.length)
         let one = all[onen]
-        if (one) {
+        if (one && matrix[one[1]][one[0]] != 10) {
             let oneX = one[0];
             let oneY = one[1];
             matrix[oneY][oneX] = 3;
